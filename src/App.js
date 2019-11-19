@@ -10,7 +10,8 @@ const App = () => {
   const [students, setStudents] = useState([]);
 
   const removeStudent = id => {
-    setStudents([...students, students.filter(el => el.id !== id)]);
+    const removedStudent = students.filter(students => students.id !== id);
+    setStudents(removedStudent);
   };
 
   useEffect(() => {

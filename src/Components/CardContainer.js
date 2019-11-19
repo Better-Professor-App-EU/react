@@ -17,7 +17,7 @@ const CardContainer = props => {
   };
   console.log(props);
 
-  let filteredStuds = props.students.filter(student => {
+  let filteredStuds = props.students.filter(Boolean).filter(student => {
     return student.name.toLowerCase().indexOf(searchValue.toLowerCase()) !== -1;
   });
 
