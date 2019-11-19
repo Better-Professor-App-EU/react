@@ -9,11 +9,14 @@ import CardContainer from "./Components/CardContainer";
 const App = () => {
   const [students, setStudents] = useState([]);
 
+  const removeStudent = id => {
+    setStudents([...students, students.filter(el => el.id !== id)]);
+  };
+
   useEffect(() => {
     axios
       .get("https://back-end-bpa.herokuapp.com/api/students")
       .then(response => {
-        console.log(response);
         setStudents(response.data);
         console.log("students", students);
       })
@@ -31,7 +34,13 @@ const App = () => {
         exact
         path="/"
         render={props => {
-          return <CardContainer students={students} {...props} />;
+          return (
+            <CardContainer
+              students={students}
+              {...props}
+              removeStudent={removeStudent}
+            />
+          );
         }}
       />
 

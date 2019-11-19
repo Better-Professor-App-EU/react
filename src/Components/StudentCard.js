@@ -19,10 +19,12 @@ const RegisterCard = styled.form`
 
 const StudentCard = props => {
   const { id, name } = props.stud;
+
   return (
     <RegisterCard>
       <h1>{name}</h1>
       <h3>{id}</h3>
+      <btn onClick={() => props.removeStudent(id)}>Delete</btn>
     </RegisterCard>
   );
 };
