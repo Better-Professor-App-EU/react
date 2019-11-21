@@ -28,7 +28,6 @@ const RegisterCard = styled.form`
   }
   btn {
     background: white;
-
     margin-bottom: 5px;
     min-width: 35%;
     box-shadow: 0 1px 1px
@@ -51,7 +50,6 @@ const StudentCard = props => {
         <Link to={`/students/${id}`}>
           <btn className="dashboardBtn">View Dashboard</btn>
         </Link>
-        {/* <h3>{id}</h3> */}
         <btn onClick={() => props.removeStudent(id)} className="delete">
           Delete
         </btn>

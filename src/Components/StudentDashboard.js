@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react";
 import MessageForm from "./MessageForm";
+import Header from "./Header";
 import PropTypes from "prop-types";
 import {
   Button,
@@ -71,17 +72,8 @@ const StudentDashboard = props => {
 
   return (
     <section className="dashboard">
+      <Header />
       <h1>student.name</h1>
-      <div className="listofProjects">
-        {allProjects.map(project => {
-          return (
-            <div>
-              <div>{project.name}</div>
-              <div>{project.deadline}</div>
-            </div>
-          );
-        })}
-      </div>
       <div>
         <h2>messages here</h2>
         {allMessages.map(message => {
@@ -98,6 +90,16 @@ const StudentDashboard = props => {
           <br />
           <hr />
           <h2>Projects here</h2>
+          <div className="listofProjects">
+            {allProjects.map(project => {
+              return (
+                <div>
+                  <div>{project.name}</div>
+                  <div>{project.deadline}</div>
+                </div>
+              );
+            })}
+          </div>
           {allProjects.map(project => {
             return (
               <div>

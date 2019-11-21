@@ -62,7 +62,7 @@ const LogIn = props => {
         localStorage.setItem("token", res.data.token);
         debugger;
 
-        window.location.href = "/students";
+        window.location.href = "/";
       });
   };
   return (

@@ -5,9 +5,9 @@ import { send } from "q";
 
 const ProjectForm = () => {
   const [projectData, setprojectData] = useState({
-    student_id: "",
-    text: "",
-    send_to_self: "no"
+    id: "",
+    name: "",
+    deadlines: [{ deadline_type: "", deadline: "" }]
   });
 
   const handleChange = e => {
@@ -38,27 +38,26 @@ const ProjectForm = () => {
 
   return (
     <div className="Project-form">
-      <h2>Projects Form</h2>
+      <h2>Add Project</h2>
       <hr />
       <form className="propjectForm" onSubmit={handleSubmit}>
         <div>
           <label>Project Name:</label>
-          <select
+          <input
             type="text"
             name="name"
             id="name"
             placeholder="Project name"
             onChange={handleChange}
-          >
-            <label for="deadline">Project Due By: </label>
-            <input
-              type="date"
-              name="deadline"
-              id="deadline"
-              placeholder="date"
-              onChange={handleChange}
-            />
-          </select>
+          />
+          <label for="deadline">Project Due By: </label>
+          <input
+            type="date"
+            name="deadline"
+            id="deadline"
+            placeholder="date"
+            onChange={handleChange}
+          />
         </div>
         <div>
           <label htmlFor="text">Project description: </label>

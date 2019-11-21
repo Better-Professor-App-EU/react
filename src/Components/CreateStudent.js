@@ -4,8 +4,7 @@ import withAuth from "../axios";
 import axios from "axios";
 const CreateStudent = ({ setStudentList, studentList }) => {
   const [student, setStudent] = useState({
-    name: "",
-    subject: ""
+    name: ""
   });
 
   const handleChange = e => {
@@ -19,8 +18,7 @@ const CreateStudent = ({ setStudentList, studentList }) => {
   const handleSubmit = e => {
     e.preventDefault();
     console.log(student);
-    // withAuth()
-    axios
+    withAuth()
       .post(
         `https://bw-better-professor-app-cmp.herokuapp.com/students`,
         student
@@ -28,8 +26,6 @@ const CreateStudent = ({ setStudentList, studentList }) => {
       .then(res => {
         console.log(studentList);
         console.log(res);
-        window.location.href =
-          "https://bw-better-professor-app-cmp.herokuapp.com/students";
       })
       .catch(err => console.log(err));
   };
@@ -45,16 +41,6 @@ const CreateStudent = ({ setStudentList, studentList }) => {
             name="name"
             id="name"
             placeholder="  name  "
-            required
-            onChange={handleChange}
-          />
-        </FormGroup>
-        <FormGroup>
-          <Input
-            type="text"
-            name="subject"
-            id="subject"
-            placeholder="  subject "
             required
             onChange={handleChange}
           />
