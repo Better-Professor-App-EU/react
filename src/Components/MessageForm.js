@@ -1,7 +1,6 @@
 import React, { useState } from "react";
-import { button, Form, label, div } from "reactstrap";
+import styled from "styled-components";
 import withAuth from "../axios";
-import { send } from "q";
 
 const MessageForm = () => {
   const [formData, setFormData] = useState({
@@ -40,7 +39,7 @@ const MessageForm = () => {
 
   return (
     <div className="Message-form">
-      <h2>Message Form</h2>
+      <h4>Send new Message</h4>
       <hr />
       <form className="messageForm" onSubmit={handleSubmit}>
         <div>

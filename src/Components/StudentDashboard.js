@@ -1,34 +1,28 @@
 import React, { useState, useEffect } from "react";
 import MessageForm from "./MessageForm";
 import Header from "./Header";
-import PropTypes from "prop-types";
-import {
-  Button,
-  Card,
-  CardBody,
-  CardHeader,
-  CardTitle,
-  Container,
-  Jumbotron,
-  ListGroup,
-  ListGroupItem,
-  ListGroupItemHeading,
-  ListGroupItemText,
-  Form,
-  FormGroup,
-  Label,
-  Input,
-  Modal,
-  ModalHeader,
-  ModalBody,
-  Spinner
-} from "reactstrap";
+import styled from "styled-components";
 
 import withAuth from "../axios";
 import ProjectForm from "./ProjectForm";
 
+const StyledForms = styled.div`
+  h1 {
+    font-family: Roboto;
+    font-style: normal;
+    font-weight: normal;
+    font-size: 28px;
+    line-height: 21px;
+    color: #fe0202;
+  }
+
+  form {
+    background: #e9e7e3;
+  }
+`;
+
 const StudentDashboard = props => {
-  console.log(props.match.params);
+  console.log(props);
   const [allProjects, setAllProjects] = useState([]);
   const [projectAdded, setProjectAdded] = useState({
     project_name: "",
@@ -44,9 +38,7 @@ const StudentDashboard = props => {
 
   useEffect(() => {
     withAuth()
-      .get(
-        `https://bw-better-professor-app-cmp.herokuapp.com/students/${id}/projects`
-      )
+      .get(`https://bw-better-professor-app-cmp.herokuapp.com/projects`)
       .then(response => {
         setAllProjects(response.data);
         console.log(response.data);
@@ -58,9 +50,7 @@ const StudentDashboard = props => {
 
   useEffect(() => {
     withAuth()
-      .get(
-        `https://bw-better-professor-app-cmp.herokuapp.com/students/${id}/messages`
-      )
+      .get(`https://bw-better-professor-app-cmp.herokuapp.com/messages/${id}`)
       .then(response => {
         setAllMessages(response.data);
         console.log(response.data);
@@ -71,21 +61,24 @@ const StudentDashboard = props => {
   }, [props.match.params.id]);
 
   return (
-    <section className="dashboard">
+    <StyledForms>
       <Header />
-      <h1>student.name</h1>
-      <div>
-        <h2>messages here</h2>
-        {allMessages.map(message => {
-          return (
-            <div>
-              <div>{message.text}</div>
-            </div>
-          );
-        })}
-      </div>
+      <h1>Dashboard</h1>
+      <section className="messagesSection">
+        <div className="messagediv">
+          <h2>Messages</h2>
+          {allMessages.map(message => {
+            return (
+              <div>
+                <div>{message.text}</div>
+                <div>{message.timestamp}</div>
+              </div>
+            );
+          })}
+        </div>
+      </section>
       <div className="btnMessage">
-        <MessageForm />
+        <MessageForm className="form" />
         <div>
           <br />
           <hr />
@@ -108,9 +101,9 @@ const StudentDashboard = props => {
             );
           })}
         </div>
-        <ProjectForm />
+        <ProjectForm className="form" />
       </div>
-    </section>
+    </StyledForms>
   );
 };
 export default StudentDashboard;
