@@ -5,6 +5,9 @@ import "./App.css";
 
 import Header from "./Components/Header";
 import CardContainer from "./Components/CardContainer";
+import StudentDashboard from "./Components/StudentDashboard";
+import LogIn from "./Components/Login";
+import withAuth from "./axios";
 
 const App = () => {
   const [students, setStudents] = useState([]);
@@ -15,8 +18,8 @@ const App = () => {
   };
 
   useEffect(() => {
-    axios
-      .get("https://back-end-bpa.herokuapp.com/api/students")
+    withAuth()
+      .get("https://bw-better-professor-app-cmp.herokuapp.com/students")
       .then(response => {
         setStudents(response.data);
         console.log("students", students);
@@ -27,10 +30,8 @@ const App = () => {
   }, []);
   return (
     <div className="App">
-      <Header />
-      <br />
-      <br />
-      <br />
+      <Route path="/login" component={LogIn} />
+      <Route exact path="/" component={Header} />
       <Route
         exact
         path="/"
@@ -44,10 +45,19 @@ const App = () => {
           );
         }}
       />
-
-      {/* <Route exact path="/student$[id]" render={STB}>
-        <StudentDashboard />
-      </Route> */}
+      <Route
+        exact
+        path="/students/:id"
+        render={props => {
+          return (
+            <StudentDashboard
+              students={students}
+              {...props}
+              removeStudent={removeStudent}
+            />
+          );
+        }}
+      />
     </div>
   );
 };

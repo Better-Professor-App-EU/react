@@ -1,5 +1,5 @@
 import React from "react";
-import { Link } from "react-router-dom";
+import { NavLink } from "react-router-dom";
 import styled from "styled-components";
 import Images from "../Images/Logo.png";
 
@@ -8,7 +8,7 @@ const HeaderStyles = styled.header`
   display: flex;
   justify-content: space-between;
   max-height: 50px;
-  h1 {
+  min-width: 100% h1 {
     margin-top: 1.8rem;
     color: #fe0202;
   }
@@ -41,12 +41,8 @@ const Header = () => {
         <img src={Images} alt="logo" />
       </div>
       <NavBar>
-        <Link to href="/">
-          Home
-        </Link>
-        <Link to href="logout">
-          Log Out
-        </Link>
+        <NavLink to="/">Home</NavLink>
+        <NavLink to="/login">Log Out</NavLink>
       </NavBar>
     </HeaderStyles>
   );

@@ -4,9 +4,22 @@ import { Route } from "react-router-dom";
 
 import StudentCard from "./StudentCard";
 import SearchForm from "./SearchForm";
+import CreateStudent from "./CreateStudent";
 
 const Register = styled.section`
-  background-color: grey;
+  background-color: white;
+  .createSearch {
+    border-top: 1px solid #fe0202;
+    display: flex;
+    justify-content: space-around;
+    max-height: 100px;
+  }
+  .listTitle {
+    border-top: 1px solid #fe0202;
+  }
+  .searchForm {
+    margin-top: 100px;
+  }
 `;
 
 const CardContainer = props => {
@@ -24,15 +37,22 @@ const CardContainer = props => {
   return (
     <Register>
       <div className="createSearch">
-        <SearchForm searchValue={searchValue} inputSearch={inputSearch} />
-        <div>
-          {filteredStuds.map(stud => {
-            return (
-              <StudentCard stud={stud} removeStudent={props.removeStudent} />
-            );
-          })}
-        </div>
-        {/* <CreateStudentButton />  */}
+        <SearchForm
+          classname="searchForm"
+          searchValue={searchValue}
+          inputSearch={inputSearch}
+        />
+        <CreateStudent className="createStudent" />
+      </div>
+      <br />
+      <br />
+      <h1 className="listTitle">List of students</h1>
+      <div>
+        {filteredStuds.map(stud => {
+          return (
+            <StudentCard stud={stud} removeStudent={props.removeStudent} />
+          );
+        })}
       </div>
     </Register>
   );
